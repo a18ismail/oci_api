@@ -10,15 +10,17 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        // $product = new Product();
-        // $manager->persist($product);
 
-        $pelicula = new Pelicula();
-        $pelicula->setNom('Pelicula')
-            ->setGenere('terror')
-            ->setDescripcio('Descripcio de la pelicula.');
+        for ($i=0; $i<10; $i++){
+            $pelicula = new Pelicula();
+            $pelicula->setNom('Pelicula '.$i)
+                ->setGenere('Genere Aleatori')
+                ->setDescripcio('Descripcio de la pelicula '. $i);
 
-        $manager->persist($pelicula);
+            $manager->persist($pelicula);
+        }
+
+
 
         $manager->flush();
     }
