@@ -64,7 +64,7 @@ class PeliculasController extends AbstractController
             'descripcio' => $pelicula->getDescripcio()
         ];
 
-        return new JsonResponse($result, Response::HTTP_OK);
+        return new JsonResponse(json_encode($result), Response::HTTP_OK);
 
     }
 
@@ -75,15 +75,16 @@ class PeliculasController extends AbstractController
     {
         $pelicules = $this->peliculaRepository->findAll();
 
-        $result = [];
+        $result = array();
 
         foreach ($pelicules as $pelicula){
-            $result[] = [
+            $item = array(
                 'id' => $pelicula->getId(),
                 'nom' => $pelicula->getNom(),
                 'genere' => $pelicula->getGenere(),
                 'descripcio' => $pelicula->getDescripcio()
-            ];
+            );
+            array_push($result, $item);
         }
 
         return new JsonResponse($result, Response::HTTP_OK);
